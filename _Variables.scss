@@ -1,0 +1,160 @@
+////*******************************************************************************
+/// Global Generic SCSS style Properties:
+////*******************************************************************************
+$BaseFontFamily: "Segoe UI WestEuropean"
+                ,"Segoe UI"
+                ,"Helvetica Neue"
+                ,"sans-serif"
+                ,-apple-system
+                ,BlinkMacSystemFont
+                ,Roboto !global;
+
+$BaseFontColor: #000000 !global;
+$BaseFontSize: 12px !global;
+$BaseSmallFontSize: 10px !global;
+$BaseMediumFontSize: 12px !global;
+$BaseLargeFontSize: 14px !global;
+
+////*******************************************************************************
+/// Global Web Part SCSS style Properties:
+////*******************************************************************************
+$WebPartWidthDefault: 700px !global;
+$WebPartWidth: $WebPartWidthDefault !global;
+$WebPartMinimumWidth: 500px !global;
+$WebPartMaximumWidth: 900px !global;
+$WebPartWidthVariance: 0px !global;
+
+$WebPartHeightDefault: 490px !global;
+$WebPartHeight: $WebPartHeightDefault !global;
+$WebPartMinimumHeight: 400px !global;
+$WebPartMaximumHeight: 600px !global;
+$WebPartHeightVariance: 0px !global;
+
+////*******************************************************************************
+/// Global Object Explorer SCSS style Properties:
+////*******************************************************************************
+$ObjectExplorerFontFamily: $BaseFontFamily !global;
+$ObjectExplorerFontColor: #000000 !global;
+$ObjectExplorerWidth: 240px !global;
+$ObjectExplorerMinimumWidth: 140px !global;
+$ObjectExplorerMaximumWidth: 340px !global;
+
+$ObjectExplorerHeight: 340px !global;
+$ObjectExplorerMinHeight: 240px !global;
+$ObjectExplorerMaxHeight: 440px !global;
+
+$ObjectExplorerBaseFontSize: $BaseFontSize !global;
+$ObjectExplorerFontSmall: $BaseSmallFontSize !global;
+$ObjectExplorerFontMedium: $BaseMediumFontSize !global;
+$ObjectExplorerFontLarge: $BaseLargeFontSize !global;
+
+////*******************************************************************************
+/// Global Query Canvas SCSS style Properties
+///   -- This is the Parent of:
+///     Query SQL Window -- (top)
+///     Query Results Window -- (bottom)
+////*******************************************************************************
+$CalculatedQueryCanvasWidth: calc( ( #{$WebPartWidth} - #{$ObjectExplorerWidth} ) - 50px );
+$CalculatedQueryCanvasHeight: calc( #{$WebPartHeight} - 74px );
+
+$QueryCanvasWidth: $CalculatedQueryCanvasWidth !global;
+$QueryCanvasHeight: $CalculatedQueryCanvasHeight !global;
+
+////*******************************************************************************
+/// Global SQL Query Window SCSS style Properties:
+/// This is where users will write their SQL statements.
+////*******************************************************************************
+$QueryWindowFontFamily: $BaseFontFamily !global;
+$QueryWindowFontColor: #000000 !global;
+$QueryWindowBaseFontSize: $BaseFontSize !global;
+$QueryWindowFontSmall: $BaseSmallFontSize !global;
+$QueryWindowFontMedium: $BaseMediumFontSize !global;
+$QueryWindowFontLarge: $BaseLargeFontSize !global;
+
+////*******************************************************************************
+/// Global Query Results Window SCSS style Properties:
+/// This is where the results of the query will be presented.
+////*******************************************************************************
+$QueryResultsFontFamily: $BaseFontFamily !global;
+$QueryResultsFontColor: #000000 !global;
+$QueryResultsBaseFontSize: $BaseFontSize !global;
+$QueryResultsFontSmall: $BaseSmallFontSize !global;
+$QueryResultsFontMedium: $BaseMediumFontSize !global;
+$QueryResultsFontLarge: $BaseLargeFontSize !global;
+
+////*******************************************************************************
+/// Define and Export our custom global CSS Properties:
+////*******************************************************************************
+
+:root
+{
+  ////*******************************************************************************
+  /// Global Generic CSS style Properties:
+  ////*******************************************************************************
+  --BaseFontFamily: #{$BaseFontFamily};
+  --BaseFontColor: #000000;
+  --BaseFontSize: #{$BaseFontSize};
+  --BaseSmallFontSize: #{$BaseSmallFontSize};
+  --BaseMediumFontSize: #{$BaseMediumFontSize};
+  --BaseLargeFontSize: #{$BaseLargeFontSize};
+
+  ////*******************************************************************************
+  /// Global Web Part CSS style Properties:
+  ////*******************************************************************************
+  --WebPartWidthDefault: #{$WebPartWidthDefault};
+  --WebPartHeightDefault: #{$WebPartHeightDefault};
+
+  --WebPartWidth: #{$WebPartWidth};
+  --WebPartMinimumWidth: #{$WebPartMinimumWidth};
+  --WebPartMaximumWidth: #{$WebPartMaximumWidth};
+  --WebPartWidthVariance: #{$WebPartWidthVariance};
+
+  --WebPartHeight: #{$WebPartHeight};
+  --WebPartMinimumHeight: #{$WebPartMinimumHeight};
+  --WebPartMaximumHeight: #{$WebPartMaximumHeight};
+  --WebPartHeightVariance: #{$WebPartHeightVariance};
+
+  ////*******************************************************************************
+  /// Global Object Explorer CSS style Properties:
+  ////*******************************************************************************
+  --ObjectExplorerFontFamily: #{$ObjectExplorerFontFamily};
+  --ObjectExplorerFontColor: #000000;
+  --ObjectExplorerHeight: #{$ObjectExplorerHeight};
+  --ObjectExplorerWidth: #{$ObjectExplorerWidth};
+  --ObjectExplorerBaseFontSize: #{$ObjectExplorerBaseFontSize};
+  --ObjectExplorerFontSmall: #{$ObjectExplorerFontSmall};
+  --ObjectExplorerFontMedium: #{$ObjectExplorerFontMedium};
+  --ObjectExplorerFontLarge: #{$ObjectExplorerFontLarge};
+
+  ////*******************************************************************************
+  /// Global Query Canvas CSS style Properties:
+  ///   -- This is the Parent of:
+  ///     Query SQL Window -- (top)
+  ///     Query Results Window -- (bottom)
+  ////*******************************************************************************
+  --QueryCanvasWidth: #{$QueryCanvasWidth};
+  --QueryCanvasHeight: #{$QueryCanvasHeight};
+
+  ////*******************************************************************************
+  /// Global SQL Query Window CSS style Properties:
+  /// This is where users will write their SQL statements.
+  ////*******************************************************************************
+  --QueryWindowFontFamily: #{$QueryWindowFontFamily};
+  --QueryWindowFontColor: #000000;
+  --QueryWindowBaseFontSize: #{$QueryWindowBaseFontSize};
+  --QueryWindowFontSmall: #{$QueryWindowFontSmall};
+  --QueryWindowFontMedium: #{$QueryWindowFontMedium};
+  --QueryWindowFontLarge: #{$QueryWindowFontLarge};
+
+  ////*******************************************************************************
+  /// Global Query Results Window CSS style Properties:
+  /// This is where the results of the query will be presented.
+  ////*******************************************************************************
+  --QueryResultsFontFamily: #{$QueryResultsFontFamily};
+  --QueryResultsFontColor: #000000;
+  --QueryResultsBaseFontSize: #{$QueryResultsBaseFontSize};
+  --QueryResultsFontSmall: #{$QueryResultsFontSmall};
+  --QueryResultsFontMedium: #{$QueryResultsFontMedium};
+  --QueryResultsFontLarge: #{$QueryResultsFontLarge};
+
+}

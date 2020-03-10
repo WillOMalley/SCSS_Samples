@@ -1,0 +1,323 @@
+// Script Flags for Development:
+$showDebugMessages: false;
+
+////
+/// @name hb-Map-Value
+/// @author Will O'Malley
+/// @access public
+///
+/// Call this function from any .SCSS script to Map a value
+/// thats based on a CSS variable.
+/// ------------------------------------------------------
+/// @param {$key} -- Item to Map
+/// ------------------------------------------------------
+/// @returns: any
+/// ------------------------------------------------------
+/// Notes:
+/// Called by other .scss scripts.
+/// ------------------------------------------------------
+////
+@function hb-Map-Value($key)
+{
+  @return hb-Get-Value( $key );
+}
+
+////
+/// @name hb-To-Integer
+/// @author Will O'Malley
+/// @access public
+///
+/// Call this function from any .SCSS script to convert a value
+/// to an Integer.
+/// ------------------------------------------------------
+/// @param {$value}
+///      Value to convert
+///
+/// @param {$mappedToVariable}
+///      Tells the function if the value is mapped to a variable.
+///
+/// @param {$units}
+///      Tells the function what unit of measurement to use (px, pt, em...ect)
+/// ------------------------------------------------------
+/// @example
+///   Mapped to a CSS variable:
+///     width: hb-To-Integer($value: hb-Map-Value(--CSS_Variable_Name), $mappedToVariable: true);
+/// @example
+///   Hard coded:
+///     width: hb-To-Integer($value: 200px, $mappedToVariable: false);
+/// ------------------------------------------------------
+/// @returns integer
+/// ------------------------------------------------------
+/// Notes:
+///
+/// ------------------------------------------------------
+////
+@function hb-To-Integer($value, $mappedToVariable, $unit: 1px)
+{
+  $debug: null;
+  $itemValue: null;
+  $sign: null;
+  $multiplier: 0;
+
+  $debug: hb-Debug(" ");
+  $debug: hb-Debug("hb-To-Integer: BEGIN");
+  $debug: hb-Debug("$value: #{$value} type: #{ type-of($value) }");
+  $debug: hb-Debug("$mappedToVariable: #{$mappedToVariable}");
+
+  // Get value:
+  @if ( hb-isNumeric($value) == true )
+  {
+    $debug: hb-Debug("result: #{ abs( $value ) }");
+    $debug: hb-Debug("hb-To-Integer: END");
+    $debug: hb-Debug(" ");
+
+    @return abs( $value );
+  }
+  @else
+  {
+    @if ( $mappedToVariable )
+    {
+      @return #{$value};
+    }
+    @else
+    {
+      $itemValue: calc( #{$value} / #{$unit} );
+
+      $debug: hb-Debug("$itemValue: #{$itemValue}");
+      $debug: hb-Debug("type: #{ type-of($itemValue) }");
+      $debug: hb-Debug("hb-To-Integer: END");
+      $debug: hb-Debug(" ");
+
+      @return #{$itemValue};
+
+    }
+
+  }
+
+}
+
+////
+/// @name hb-Smart-Resize
+/// @author Will O'Malley
+/// @access public
+/// ------------------------------------------------------
+/// @param {$key}      -- Value you want to adjust
+/// @param {$variance} -- Amount to adjust it by
+/// ------------------------------------------------------
+/// @example
+///   Variance as a Variable:
+///     height: hb-Smart-Resize(
+///                              hb-To-Integer(100px, false, 1px)
+///                             ,hb-To-Integer(hb-Map-Value(--CSS_Variable_Name), true, 1px)
+///                            );
+/// @example
+///   Value to adjust as Variable:
+///     height: hb-Smart-Resize(
+///                              hb-To-Integer(hb-Map-Value(--CSS_Variable_Name), true, 1px)
+///                             ,hb-To-Integer(-15px, false, 1px)
+///                            );
+/// @example
+///   Value to adjust as Variable and Variance as Variable:
+///     height: hb-Smart-Resize(
+///                              hb-To-Integer(hb-Map-Value(--CSS_Variable_Name), true, 1px)
+///                             ,hb-To-Integer(hb-Map-Value(--CSS_Variable_Name), true, 1px)
+///                            );
+/// ------------------------------------------------------
+/// @returns integer
+/// ------------------------------------------------------
+/// Notes:
+/// Called by other .scss scripts.
+/// ------------------------------------------------------
+////
+@function hb-Smart-Resize($key, $variance)
+{
+  $debug: null;
+  $result: null;
+
+  $debug: hb-Debug(" ");
+  $debug: hb-Debug("hb-Smart-Resize: BEGIN");
+
+  // This function assumes that both the $key and $variance values have
+  // been pre-mapped or are hard coded values.
+  $itemToAdjust: $key;
+  $amountToAdjustItem: $variance;
+
+  $debug: hb-Debug("$itemToAdjust: #{$itemToAdjust}");
+  $debug: hb-Debug("$amountToAdjustItem: #{$amountToAdjustItem}");
+
+  // Generate our Calculation:
+  $result: calc( #{$itemToAdjust} + #{$amountToAdjustItem} );
+
+  $debug: hb-Debug("$result: #{$result}");
+  $debug: hb-Debug("hb-Smart-Resize: END");
+  $debug: hb-Debug(" ");
+
+  // Perform the calculation:
+  @return #{$result};
+}
+
+/******************************************************************
+*                       Helper functions
+*******************************************************************/
+
+////
+/// @name hb-isEmpty
+/// @author Will O'Malley
+/// @access public
+/// ------------------------------------------------------
+/// @param {$string} -- Item to evaluate
+/// ------------------------------------------------------
+/// @returns boolean
+/// ------------------------------------------------------
+/// Notes:
+/// Called internally Only!
+///
+/// This function performs several tests to see if the value
+/// being passed in is "blank".
+/// ------------------------------------------------------
+////
+@function hb-isEmpty($string)
+{
+  $val: inspect($string);
+
+  @if (NOT $val
+        OR $val == ""
+        OR $val == null
+        OR $val == 0
+        OR $val == ()
+        OR length( $val ) == 0
+        OR type-of( $val ) == "undefined")
+  {
+    @return true;
+  }
+  @else
+  {
+    @return false;
+  }
+}
+
+////
+/// @name hb-isNumeric
+/// @author Will O'Malley
+/// @access public
+/// ------------------------------------------------------
+/// @param {$string} -- Item to evaluate
+/// ------------------------------------------------------
+/// @returns boolean
+/// ------------------------------------------------------
+/// Notes:
+/// Called internally Only!
+///
+/// This function performs several tests to see if the value
+/// being passed is a numeric value.
+/// ------------------------------------------------------
+////
+@function hb-isNumeric($string)
+{
+  @if ( hb-isEmpty($string) != true
+        AND type-of($string) == "number")
+  {
+    @return true;
+  }
+  @else
+  {
+    @return false;
+  }
+}
+
+////
+/// @name hb-Substring
+/// @author Will O'Malley
+/// @access public
+/// ------------------------------------------------------
+/// @param {$value}  -- String
+/// @param {$start}  -- Starting point
+/// @param {$length} -- String
+/// ------------------------------------------------------
+/// @returns value: any
+/// ------------------------------------------------------
+/// Notes:
+/// Called internally Only!
+/// ------------------------------------------------------
+////
+@function hb-Substring($value, $start, $length)
+{
+  $debug: hb-Debug(" ");
+  $debug: hb-Debug("hb-Substring:");
+  $debug: hb-Debug("$value: #{$value} type: #{ type-of( $value ) }");
+  $debug: hb-Debug("$start: #{$start}");
+  $debug: hb-Debug("$length: #{$length}");
+
+  @if ( hb-isEmpty( $value ) != true )
+  {
+    $debug: hb-Debug("result: #{ str-slice( $value, $start, ($length - 1) ) }");
+    @return abs( str-slice($value, $start, ($length - 1) ) );
+  }
+  @else
+  {
+    @return $value;
+  }
+}
+
+////
+/// @name hb-Get-Value
+/// @author Will O'Malley
+/// @access public
+/// ------------------------------------------------------
+/// @param {$key} -- Item to get
+/// ------------------------------------------------------
+/// @returns value: any
+/// ------------------------------------------------------
+/// Notes:
+/// Called internally Only!
+/// ------------------------------------------------------
+////
+@function hb-Get-Value($key)
+{
+  $passedKey: var( $key );
+
+  @if ( hb-isEmpty( $passedKey ) != true)
+  {
+
+    @if ( type-of( $passedKey ) == "string" )
+    {
+      @return inspect( $passedKey );
+    }
+    @else
+    {
+      @return $passedKey;
+    }
+
+  }
+  @else
+  {
+    @return $key;
+  }
+}
+
+/******************************************************************
+*                       Other functions
+*******************************************************************/
+
+////
+/// @name hb-Debug
+/// @author Will O'Malley
+/// @access public
+/// ------------------------------------------------------
+/// @param {$debugMessage} -- String to output to screen.
+/// ------------------------------------------------------
+/// @returns value: any
+/// ------------------------------------------------------
+/// Notes:
+/// Called internally Only!
+/// ------------------------------------------------------
+////
+@function hb-Debug($debugMessage)
+{
+  @if ($showDebugMessages == true)
+  {
+    @debug $debugMessage;
+  }
+
+  @return $showDebugMessages;
+}

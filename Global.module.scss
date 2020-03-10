@@ -1,0 +1,77 @@
+// Bring in our Variables:
+@import './Variables';
+
+// The :export directive should give us access to these variables via JavaScript.
+// My hope is that it will work with TypeScript as well.  Note, I didn't mess with
+// Webpack for this so... Here's hoping
+:export
+{
+  ////*******************************************************************************
+  /// Global Generic SCSS style Properties:
+  ////*******************************************************************************
+  BaseFontFamily: #{$BaseFontFamily};
+  BaseFontColor: $BaseFontColor;
+  BaseFontSize: #{$BaseFontSize};
+  BaseSmallFontSize: #{$BaseSmallFontSize};
+  BaseMediumFontSize: #{$BaseMediumFontSize};
+  BaseLargeFontSize: #{$BaseLargeFontSize};
+
+  ////*******************************************************************************
+  /// Global Web Part SCSS style Properties:
+  ////*******************************************************************************
+  WebPartWidthDefault: #{$WebPartWidthDefault};
+  WebPartWidth: #{$WebPartWidth};
+  WebPartMinimumWidth: #{$WebPartMinimumWidth};
+  WebPartMaximumWidth: #{$WebPartMaximumWidth};
+  WebPartWidthVariance: #{$WebPartWidthVariance};
+
+  WebPartHeightDefault: #{$WebPartHeightDefault};
+  WebPartHeight: #{$WebPartHeight};
+  WebPartMinimumHeight: #{$WebPartMinimumHeight};
+  WebPartMaximumHeight: #{$WebPartMaximumHeight};
+  WebPartHeightVariance: #{$WebPartHeightVariance};
+
+  ////*******************************************************************************
+  /// Global Object Explorer SCSS style Properties:
+  ////*******************************************************************************
+  ObjectExplorerFontFamily: #{$ObjectExplorerFontFamily};
+  ObjectExplorerFontColor: $ObjectExplorerFontColor;
+  ObjectExplorerWidth: #{$ObjectExplorerWidth};
+  ObjectExplorerHeight: #{$ObjectExplorerHeight};
+  ObjectExplorerBaseFontSize: #{$ObjectExplorerBaseFontSize};
+  ObjectExplorerFontSmall: #{$ObjectExplorerFontSmall};
+  ObjectExplorerFontMedium: #{$ObjectExplorerFontMedium};
+  ObjectExplorerFontLarge: #{$ObjectExplorerFontLarge};
+
+  ////*******************************************************************************
+  /// Global Query Canvas SCSS style Properties
+  ///   -- This is the Parent of:
+  ///     Query SQL Window -- (top)
+  ///     Query Results Window -- (bottom)
+  ////*******************************************************************************
+  QueryCanvasWidth: #{$QueryCanvasWidth};
+  QueryCanvasHeight: #{$QueryCanvasHeight};
+
+  ////*******************************************************************************
+  /// Global SQL Query Window SCSS style Properties:
+  /// This is where users will write their SQL statements.
+  ////*******************************************************************************
+  QueryWindowFontFamily: #{$QueryWindowFontFamily};
+  QueryWindowFontColor: $QueryWindowFontColor;
+  QueryWindowBaseFontSize: #{$QueryWindowBaseFontSize};
+  QueryWindowFontSmall: #{$QueryWindowFontSmall};
+  QueryWindowFontMedium: #{$QueryWindowFontMedium};
+  QueryWindowFontLarge: #{$QueryWindowFontLarge};
+
+  ////*******************************************************************************
+  /// Global Query Results Window SCSS style Properties:
+  /// This is where the results of the query will be presented.
+  ////*******************************************************************************
+  QueryResultsFontFamily: #{$QueryResultsFontFamily};
+  QueryResultsFontColor: $QueryResultsFontColor;
+  QueryResultsBaseFontSize: #{$QueryResultsBaseFontSize};
+  QueryResultsFontSmall: #{$QueryResultsFontSmall};
+  QueryResultsFontMedium: #{$QueryResultsFontMedium};
+  QueryResultsFontLarge: #{$QueryResultsFontLarge};
+
+}

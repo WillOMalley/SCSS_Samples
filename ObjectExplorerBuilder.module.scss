@@ -1,0 +1,345 @@
+// Import the core Framework styles:
+@import "~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss";
+
+// Import our functions:
+@import "../../GlobalSCSS/Utility";
+
+// Import our Global Variables:
+@import "./environment/GlobalSCSS/Global.module.scss";
+
+
+.WarningLabelContainer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding-top: 3px;
+  padding-right: 3px;
+  width: 350px;
+  height: 150px;
+  border: solid 1px #000000;
+  border-radius: 6px;
+  background-color: $ms-color-themePrimary;
+  box-shadow: 10px 8px 5px dimgrey;
+  display: none;
+  z-index: 10000;
+  align-items: center;
+  align-content: center;
+
+  .WarningLabel_TableHeader {
+    width: 330px;
+    height: 20px;
+    background-color: transparent;
+    border-top-left-radius: 8;
+    padding-left: 5px;
+  }
+
+  .WarningLabel_CloseIcon {
+    cursor: pointer;
+    font: hb-Map-Value(--BaseFontFamily);
+    width: 25px;
+    height: 15px;
+    background-color: rgb(59, 59, 61);
+    border-left: solid 1px #000000;
+    align-content: center;
+    text-align: center;
+    border-top-right-radius: 6px;
+    padding-right: 4px;
+  }
+
+  .WarningLabel_CloseIcon:hover {
+    cursor: pointer;
+    background-color: red;
+  }
+
+  .WarningLabelMessage_Table {
+    width: 340px;
+    height: 120px;
+    background-color: rgb(228, 228, 228);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    border-top: inset 2px #000000;
+    border-left: inset 2px #000000;
+    border-bottom: solid 1px rgb(78, 78, 78);
+    border-right: solid 1px rgb(78, 78, 78);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .WarningLabel {
+    font: hb-Map-Value(--BaseFontFamily);
+    font-weight: $ms-font-weight-semibold;
+    font-size: hb-Map-Value(--BaseSmallFontSize);
+    color: rgb(228, 44, 44);
+    background-color: transparent;
+    vertical-align: top;
+    overflow-wrap: break-word;
+  }
+
+}
+
+.LeftSidePanelHolder {
+  width: hb-Map-Value(--ObjectExplorerWidth);
+  height: 100%;
+  align-items: center;
+  vertical-align: top;
+  background: transparent;
+
+  .ConnectButtonContainer {
+    width: hb-Map-Value(--ObjectExplorerWidth);
+    height: 46px;
+    // Note: in order for this to look correct it must be set equal to the height
+    line-height: 40px;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    background: transparent;
+    padding-bottom: 5px;
+
+    .ConnectButton {
+      border-top: 1px solid $ms-color-themeLight;
+      border-bottom: 2px ridge $ms-color-themeLighter;
+      border-left: 1px solid $ms-color-themeLight;
+      border-right: 2px ridge $ms-color-themeLighter;
+      border-radius: 10px 10px 10px 10px;
+      width: 200px;
+      height: 100%;
+      font-weight: bold;
+      color: #000000;
+      text-align: center;
+      vertical-align: middle;
+      align-items: center;
+      align-content: center;
+      line-height: 100%;
+      background-image: linear-gradient(
+                                          to top right,
+                                          $ms-color-themeDark 1%,
+                                          $ms-color-themeLight 10%,
+                                          $ms-color-themeDark 35%,
+                                          $ms-color-themeLight 80%,
+                                          $ms-color-themeDark 100%
+                                        );
+      outline: transparent;
+      text-decoration: none;
+      transition: all 0.25s;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .ConnectButton:disabled {
+      cursor: not-allowed;
+      border: 2px inset darkslateblue;
+      border-radius: 10px 10px 10px 10px;
+      width: 200px;
+      height: 100%;
+      font: 16px arial normal;
+      color: white;
+      text-align: center;
+      vertical-align: middle;
+      align-items: center;
+      align-content: center;
+      line-height: 100%;
+      background-image: linear-gradient(to right, gray 1%, lightgray 50%, gray 100%);
+      opacity: 0.65;
+      outline: transparent;
+      box-shadow: 1px 1px 1px 1px black inset;
+      -webkit-box-shadow: 1px 1px 1px 1px black inset;
+      -moz-box-shadow: 1px 1px 1px 1px black inset;
+      text-decoration: none;
+    }
+
+    .ConnectButton:hover:disabled {
+      cursor: not-allowed;
+      color: white;
+      outline: transparent;
+      text-decoration: none;
+    }
+
+    .ConnectButton:hover:enabled {
+      cursor: pointer;
+      border-top: 2px ridge $ms-color-themeLighter;
+      border-bottom: 1px solid $ms-color-themeLight;
+      border-left: 2px ridge $ms-color-themeLighter;
+      border-right: 1px solid $ms-color-themeLight;
+      font-weight: bolder;
+      background-image: linear-gradient(
+                                          to bottom left,
+                                          $ms-color-themeLight 1%,
+                                          $ms-color-themeDark 10%,
+                                          $ms-color-themeLight 35%,
+                                          $ms-color-themeDark 80%,
+                                          $ms-color-themeLight 100%
+                                        );
+      color: black;
+      outline: transparent;
+      text-decoration: none;
+    }
+  }
+}
+
+.ObjectExplorerContainer {
+  height: hb-Smart-Resize(
+                           hb-To-Integer(hb-Map-Value(--ObjectExplorerHeight), true, 1px)
+                          ,hb-To-Integer(hb-Map-Value(--WebPartHeightVariance), true, 1px)
+                         );
+  width: hb-Map-Value(--ObjectExplorerWidth);
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  border-radius: 8px;
+  background: transparent;
+
+  .ObjectExplorer {
+    position: relative;
+    font-family: hb-Map-Value(--ObjectExplorerFontFamily);
+    font-size: hb-Map-Value(--ObjectExplorerBaseFontSize);
+    color: hb-Map-Value(--ObjectExplorerFontColor);
+    width: hb-Map-Value(--ObjectExplorerWidth);
+    height: hb-Smart-Resize(
+                             hb-To-Integer(hb-Map-Value(--ObjectExplorerHeight), true, 1px)
+                            ,hb-To-Integer(hb-Map-Value(--WebPartHeightVariance), true, 1px)
+                           );
+    border-top-color: $ms-color-themeDarker;
+    border-top-style: inset;
+    border-top-width: 3px;
+
+    border-bottom-color: $ms-color-themeLight;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+
+    border-left-color: $ms-color-themeDarker;
+    border-left-style: inset;
+    border-left-width: 3px;
+
+    border-right-color: $ms-color-themeLight;
+    border-right-style: solid;
+    border-right-width: 2px;
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 6px;
+
+    vertical-align: top;
+    background-color: transparent;
+
+    .ObjectExplorerContentWellToolbar {
+      padding-top: 2px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-bottom: 2px;
+      border-top: 1px;
+      border-left: 1px;
+      border-right: 1px;
+      border-bottom: 2px #000000 groove;
+      border-color: black;
+      border-style: solid;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      background-color: rgb(179, 179, 179);
+      width: 100%;
+      height: 28px;
+      vertical-align: middle;
+
+      .Seperator {
+        border-right: groove 2px dimgray;
+      }
+
+      .IconHolder {
+        cursor: pointer;
+        border: solid 1px #000000;
+        background-color: transparent;
+        vertical-align: middle;
+        border-radius: 3px;
+        align-content: center;
+      }
+
+      .IconHolder:hover {
+        cursor: pointer;
+        background-color: rgb(243, 243, 105);
+      }
+
+    }
+
+    .ObjectExplorerContentWell {
+      position: relative;
+      font-family: hb-Map-Value(--ObjectExplorerFontFamily);
+      font-size: hb-Map-Value(--ObjectExplorerBaseFontSize);
+      color: hb-Map-Value(--ObjectExplorerFontColor);
+      width: hb-Map-Value(--ObjectExplorerWidth);
+      height: hb-Smart-Resize(
+                               hb-To-Integer(hb-Map-Value(--ObjectExplorerHeight), true, 1px)
+                              ,hb-To-Integer(hb-Map-Value(--WebPartHeightVariance), true, 1px)
+                             );
+      border-top: 1px #000000 solid;
+      border-left: 3px rgb(100, 100, 100) groove;
+      border-right: 2px rgb(100, 100, 100) groove;
+      border-bottom: 2px rgb(100, 100, 100) groove;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 5px;
+      overflow: scroll;
+      text-align: left;
+      vertical-align: top;
+      background-color: #FFFFFF;
+      display: inline-block;
+
+      .ObjectExplorerTableStyle {
+        font-family: hb-Map-Value(--ObjectExplorerFontFamily);
+        font-size: hb-Map-Value(--ObjectExplorerFontMedium);
+        color: hb-Map-Value(--ObjectExplorerFontColor);
+        padding-top: 1px;
+        align-self: left;
+        align-content: left;
+        width: 100%;
+        display: inline-table;
+      }
+
+      .ObjectExplorerTableImageStyle {
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        padding: 0px;
+        margin: 0px;
+        vertical-align: middle;
+      }
+
+      .ObjectExplorerChildRowStyle {
+        display: none;
+      }
+
+      .ObjectExplorerChildTableStyle {
+        font-family: hb-Map-Value(--ObjectExplorerFontFamily);
+        font-size: hb-Map-Value(--ObjectExplorerFontMedium);
+        color: hb-Map-Value(--ObjectExplorerFontColor);
+        padding-top: 3px;
+        width: 100%;
+      }
+
+      .ObjectExplorerChildTableItemStyle {
+        font-family: hb-Map-Value(--ObjectExplorerFontFamily);
+        font-size: hb-Map-Value(--ObjectExplorerFontMedium);
+        color: hb-Map-Value(--ObjectExplorerFontColor);
+        font-weight: normal;
+        text-align: left;
+        vertical-align: middle;
+        line-height: 18px;
+      }
+
+      .ObjectExplorerKeyColumnItemStyle {
+        width: 21px;
+        height: 18px;
+        padding: 0px;
+        margin: 0px;
+        vertical-align: middle;
+      }
+
+    }
+
+  }
+
+}
